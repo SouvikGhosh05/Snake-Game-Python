@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#shortcut
+/Snake Game/SNAKE GAME.lnk
