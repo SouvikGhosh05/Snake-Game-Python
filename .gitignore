@@ -130,3 +130,6 @@ dmypy.json
 
 #shortcut
 /Snake Game/SNAKE GAME.lnk
+
+#build files
+/Snake Game/build
