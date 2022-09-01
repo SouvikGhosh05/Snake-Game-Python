@@ -2,9 +2,12 @@
 import pygame
 import random
 import sys
+import os
 
 y=0
 
+def ret_base(base):
+    return os.path.join(os.path.dirname(__file__ ), base)
 class Snake():
   def __init__(self):
     self.position=[105,45]
@@ -26,15 +29,15 @@ class Snake():
       self.direction="DOWN"
 
   def play_background_music(self):
-    pygame.mixer.music.load("Background.mp3")
+    pygame.mixer.music.load(ret_base("Background.mp3"))
     pygame.mixer.music.play(-1)
 
   def play_sound(self,sound_name):
     if sound_name == "crash":
-        sound = pygame.mixer.Sound("crash.mp3")
+        sound = pygame.mixer.Sound(ret_base("crash.mp3"))
         sound.play()
     elif sound_name == "ding":
-        sound = pygame.mixer.Sound("ding.mp3")
+        sound = pygame.mixer.Sound(ret_base("ding.mp3"))
         sound.play()
 
   def move(self,foodPos):
@@ -93,20 +96,20 @@ class FoodSpawer():
 window=pygame.display.set_mode((975,780))
 pygame.display.set_caption("Snake Game Python")
 
-icon= pygame.image.load("snake_05.png").convert()
+icon= pygame.image.load(ret_base("snake_05.png")).convert()
 pygame.display.set_icon(icon)
 
 fps=pygame.time.Clock()
 snake=Snake()
 foodSpawner=FoodSpawer()
 duration =  100
-background_image = pygame.image.load("background.jpg").convert()
-food_image=pygame.image.load("apple.jpg").convert()
+background_image = pygame.image.load(ret_base("background.jpg")).convert()
+food_image=pygame.image.load(ret_base("apple.jpg")).convert()
 pygame.mixer.init()
 
 def show_game_over(x):
     pygame.font.init()
-    font = pygame.font.Font("Roasting.otf", 60)
+    font = pygame.font.Font(ret_base("Roasting.otf"), 60)
     line1 = font.render(f"Game is over! Your score is {x}.", True, (244, 56, 241))
     window.blit(line1, (220, 325))
     pygame.mixer.music.stop()
