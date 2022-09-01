@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import pygame
 import random
 import sys
@@ -12,7 +13,6 @@ class Snake():
     self.tick= 5
 
   def changeDirTo(self,dir):
-        
     if dir=="RIGHT" and not self.direction=="LEFT":
       self.direction="RIGHT"
 
@@ -26,7 +26,6 @@ class Snake():
       self.direction="DOWN"
 
   def play_background_music(self):
-        
     pygame.mixer.music.load("Background.mp3")
     pygame.mixer.music.play(-1)
 
@@ -37,49 +36,46 @@ class Snake():
     elif sound_name == "ding":
         sound = pygame.mixer.Sound("ding.mp3")
         sound.play()
-    
-  def move(self,foodPos):
 
-    if y == 0:    
+  def move(self,foodPos):
+    if y == 0:
       if self.direction=="RIGHT":
         self.position[0] += 15
-  
+
       if self.direction=="LEFT":
         self.position[0] -= 15
-  
+
       if self.direction=="UP":
         self.position[1] -= 15
-  
+
       if self.direction=="DOWN":
         self.position[1] += 15
 
     self.body.insert(0,list(self.position))
-  
+
     if self.position==foodPos:
       self.play_sound("ding")
       self.tick+=1
       return 1
-    else: 
+    else:
       self.body.pop()
       return 0
 
   def checkCollision(self):
-        
     if self.position[0] > 960 or self.position[0] <0:
       return 1
     elif self.position[1] > 775 or self.position[1] <0:
       return 1
-  
+
     for bodypart in self.body[1:]:
-          
-      if self.position == bodypart:  
+      if self.position == bodypart:
         return 1
-  
+
   def getBody(self):
     return self.body
 
 class FoodSpawer():
-      
+
   def __init__(self):
     self.position=[random.randrange(1,65)*15,random.randrange(1,52)*15]
     self.isFoodonScreen=True
@@ -120,29 +116,23 @@ snake.play_background_music()
 x=1
 
 def game():
-  
   score=0
   global x,y
-  
+
   while True:
-      
     for event in pygame.event.get():
-        
       if event.type==pygame.QUIT:
         pygame.quit()
         sys.exit()
-      
-      elif event.type==pygame.KEYDOWN:  
+
+      elif event.type==pygame.KEYDOWN:
 
         if event.key==pygame.K_RIGHT:
           snake.changeDirTo('RIGHT')
-  
         if event.key==pygame.K_LEFT:
           snake.changeDirTo('LEFT')
-  
         if event.key==pygame.K_UP:
           snake.changeDirTo('UP')
-  
         if event.key==pygame.K_DOWN:
           snake.changeDirTo('DOWN')
 
@@ -155,19 +145,17 @@ def game():
     window.blit(background_image, [0, 0])
     for pos in snake.getBody():
 
-      if y==0:    
-      
+      if y==0:
         pygame.draw.rect(window,pygame.Color(246, 156, 60),pygame.Rect(pos[0],pos[1],15,15))
         window.blit(food_image,[foodPos[0],foodPos[1]])
-    
+
     if(snake.checkCollision()==1):
-    
       if x==1:
           snake.play_sound("crash")
           x=0
       show_game_over(score)
       y=1
-    
+
     pygame.display.set_caption("Snake Game | Your Score: " + str(score))
     pygame.display.update()
     fps.tick(snake.tick)

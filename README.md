@@ -2,7 +2,7 @@
 
 ## This a snake game 🐍 I made using Pygame
 
-Make sure you create a shortcut of the EXE file located in  ```Snake Game/build/SNAKE/SNAKE.exe```
+Run this game by running  ```./snake_game/src/snake.py``` or ```python3 snake_game/src/snake.py``` in the terminal.
 
 Here are some of the shots of my game 😄
 
