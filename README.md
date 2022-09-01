@@ -6,7 +6,7 @@ Run this game by running  ```./snake_game/src/snake.py``` or ```python3 snake_ga
 
 Here are some of the shots of my game 😄
 
-![Snake_1](snake_game/pictures/Snake_1.png))
+![Snake_1](snake_game/pictures/Snake_1.png)
 
 ![Snake_2](snake_game/pictures/Snake_2.png)
 
